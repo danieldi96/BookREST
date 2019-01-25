@@ -14,11 +14,12 @@
         <title>Practica Sob</title>
     </head>
     <body>
-        <h1> Practica de Sob </h1>
-        <h2> Creado por Daniel Díaz</h2>
-        
-        <a href="login.jsp">Login en la base de datos </a>
-        <a href="">Entrar la base de datos como invitado </a>
-        <a href="register.jsp">Registro en la base de datos </a>
+        <div style="margin: 2%;">
+            <h1> Practica de Sob </h1>
+            <h2> Creado por Daniel Díaz</h2>
+            <a href="login.jsp">Login en la base de datos </a><br>
+            <a href="">Entrar la base de datos como invitado </a><br>
+            <a href="register.jsp">Registro en la base de datos </a><br>
+        </div>
     </body>
 </html>
