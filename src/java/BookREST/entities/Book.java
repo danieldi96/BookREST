@@ -46,6 +46,7 @@ public class Book implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO )
+    @Basic(optional = false)
     @Column(name = "BOOK_ID")
     private Integer bookId;
     @Size(max = 40)

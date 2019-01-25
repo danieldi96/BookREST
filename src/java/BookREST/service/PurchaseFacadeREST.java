@@ -27,6 +27,7 @@ import javax.ws.rs.core.MediaType;
  * Universitat Rovira i Virgili (URV)
  */
 @Stateless
+@Path("purchase")
 public class PurchaseFacadeREST extends AbstractFacade<Purchase>{
     @PersistenceContext(unitName = "BookRESTPU")
     private EntityManager em;

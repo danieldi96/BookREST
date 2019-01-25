@@ -18,6 +18,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import BookREST.entities.Book;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -35,14 +38,14 @@ public class BookFacadeREST extends AbstractFacade<Book>{
     }
     
     @POST
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Override
     public void create(Book entity) {
         super.create(entity);
     }
 
     @PUT
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Override
     public void edit(Book entity) {
         super.edit(entity);
@@ -56,14 +59,28 @@ public class BookFacadeREST extends AbstractFacade<Book>{
 
     @GET
     @Path("{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response find(@PathParam("id") Integer id) {
+        Book book = super.find(id);
+        if (book == null)
+            return Response.status(Response.Status.NOT_FOUND).entity("No existe el libro con id: " + id).build();
+        else{ 
+            GenericEntity<Book> bookres=new GenericEntity<Book>(book){};
+            return Response.ok(bookres).build();
+        }
+    }   
+            
+    /*
+    @GET
+    @Path("{author}")
     @Produces({"application/xml", "application/json"})
-    public Book find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public Book find(@PathParam("author") String author) {
+        return super.find(author);
     }
-
+    */
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Book> findAll() {
         return super.findAll();
     }
