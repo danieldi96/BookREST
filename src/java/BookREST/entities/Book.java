@@ -8,13 +8,16 @@ package BookREST.entities;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.Basic;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -34,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
     @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
     // TODO: This query could not be correct
-    //@NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE :author IN (b.authors)"),
+    @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price"),
     @NamedQuery(name = "Book.findByAssessment", query = "SELECT b FROM Book b WHERE b.assessment = :assessment")
 })
@@ -42,15 +45,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Book implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO )
     @Column(name = "BOOK_ID")
     private Integer bookId;
     @Size(max = 40)
     @Column(name = "TITLE")
     private String title;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Column(name = "AUTHORS")
-    private List<Author> authors;
+    @Size(max = 40)
+    @Column(name = "AUTHOR")
+    private String author;
     @Size(max = 240)
     @Column(name = "DESCRIPTION")
     private String description;
@@ -85,16 +88,12 @@ public class Book implements Serializable{
         this.title = title;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
+    public String getAuthors() {
+        return author;
     }
-    /*
-    public void setAuthors(Author[] authors) {
-        this.authors.addAll(Arrays.asList(authors));
-    }*/
     
-    public void setAuthors(Author author) {
-        this.authors.add(author);
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getCoverBook() {
