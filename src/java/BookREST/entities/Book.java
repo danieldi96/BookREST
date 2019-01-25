@@ -11,6 +11,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -39,13 +42,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Book implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue( strategy = GenerationType.AUTO )
     @Column(name = "BOOK_ID")
     private Integer bookId;
     @Size(max = 40)
     @Column(name = "TITLE")
     private String title;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "AUTHORS")
     private List<Author> authors;
     @Size(max = 240)
@@ -60,11 +63,9 @@ public class Book implements Serializable{
     private int assessment;
     
     public Book() {
-        authors = new ArrayList<Author>();
     }
     
     public Book(Integer bookId){
-        authors = new ArrayList<Author>();
         this.bookId = bookId;
     }
 
@@ -87,12 +88,12 @@ public class Book implements Serializable{
     public List<Author> getAuthors() {
         return authors;
     }
-
+    /*
     public void setAuthors(Author[] authors) {
         this.authors.addAll(Arrays.asList(authors));
-    }
+    }*/
     
-    public void setAuthor(Author author) {
+    public void setAuthors(Author author) {
         this.authors.add(author);
     }
 
