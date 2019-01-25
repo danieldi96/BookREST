@@ -18,6 +18,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import BookREST.entities.Book;
+import javax.ejb.Asynchronous;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -45,18 +48,32 @@ public class BookFacadeREST extends AbstractFacade<Book>{
     }
 
     @PUT
+    @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    @Override
-    public void edit(Book entity) {
-        super.edit(entity);
+    public Response edit(@PathParam("id") Integer id, Book book) {
+        if (super.find(id) == null){
+            return Response.status(Response.Status.NOT_FOUND).entity("El libro "+id+" no existe.").build();
+        } else {
+            super.edit(book);
+            GenericEntity bookDel=new GenericEntity<String>("El libro "+id+" se ha editado correctamente."){};
+            return Response.ok(bookDel).build();
+        }
     }
     
+    //elimina un libro gracias a su id
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
+    public Response remove(@PathParam("id") Integer id) {
+        if (super.find(id) == null){
+            return Response.status(Response.Status.NOT_FOUND).entity("El libro "+id+" no existe.").build();
+        } else {
+            super.remove(super.find(id));
+            GenericEntity bookDel=new GenericEntity<String>("El libro "+id+" se ha eliminado correctamente."){};
+            return Response.ok(bookDel).build();
+        }
     }
 
+    //Busca un libro gracias a su id
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -65,39 +82,11 @@ public class BookFacadeREST extends AbstractFacade<Book>{
         if (book == null)
             return Response.status(Response.Status.NOT_FOUND).entity("No existe el libro con id: " + id).build();
         else{ 
-            GenericEntity<Book> bookres=new GenericEntity<Book>(book){};
+            GenericEntity<Book> bookres = new GenericEntity<Book>(book){};
             return Response.ok(bookres).build();
         }
     }   
-            
-    /*
-    @GET
-    @Path("{author}")
-    @Produces({"application/xml", "application/json"})
-    public Book find(@PathParam("author") String author) {
-        return super.find(author);
-    }
-    */
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Book> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
-    public List<Book> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces("text/plain")
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+      
     
     @Override
     protected EntityManager getEntityManager() {
@@ -105,4 +94,23 @@ public class BookFacadeREST extends AbstractFacade<Book>{
     }
     
     //crear método para obtener el response y acceder a la bd
+
+    @GET
+    @Produces(value = {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Asynchronous
+    public void findAll(@Suspended final AsyncResponse asyncResponse) {
+        asyncResponse.resume(doFindAll());
+    }
+
+    @GET
+    @Produces(value = {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    private Response doFindAll() {
+        List<Book> listBooks = super.findAll();
+        if (listBooks.isEmpty())
+            return Response.status(Response.Status.NOT_FOUND).entity("La lista de libros está vacía.").build();
+        else{
+            GenericEntity<List<Book>> bookList = new GenericEntity<List<Book>>(listBooks){};
+            return Response.ok(bookList).build();
+        }            
+    }
 }

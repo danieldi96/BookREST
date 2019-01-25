@@ -17,9 +17,9 @@
         <div style="margin: 2%;">
             <h1> Practica de Sob </h1>
             <h2> Creado por Daniel Díaz</h2>
-            <a href="login.jsp">Login en la base de datos </a><br>
-            <a href="">Entrar la base de datos como invitado </a><br>
-            <a href="register.jsp">Registro en la base de datos </a><br>
+            <a href="login.jsp">Login</a> &nbsp;
+            <a href="register.jsp">Registrarse</a><br>
+            <a href="#">Entrar como invitado</a><br>
         </div>
     </body>
 </html>
