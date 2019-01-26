@@ -80,7 +80,7 @@ public class BookFacadeREST extends AbstractFacade<Book>{
     public Response find(@PathParam("id") Integer id) {
         Book book = super.find(id);
         if (book == null)
-            return Response.status(Response.Status.NOT_FOUND).entity("No existe el libro con id: " + id).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("No existe el libro " + id).build();
         else{ 
             GenericEntity<Book> bookres = new GenericEntity<Book>(book){};
             return Response.ok(bookres).build();

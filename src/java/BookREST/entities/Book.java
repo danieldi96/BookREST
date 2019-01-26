@@ -89,7 +89,7 @@ public class Book implements Serializable{
         this.title = title;
     }
 
-    public String getAuthors() {
+    public String getAuthor() {
         return author;
     }
     
@@ -121,6 +121,14 @@ public class Book implements Serializable{
         this.assessment = assessment;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
