@@ -39,7 +39,7 @@
                     <h5 class="card-title text-center">Acceso a la tienda</h5>
                     <form class="form-signin" action="loged.do" method="post">
                       <div class="form-label-group">
-                        <label for="inputEmail">Usuario</label>
+                        <label for="inputUsername">Usuario</label>
                         <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required autofocus>
                       </div>
                       <br>

@@ -20,8 +20,8 @@
         
         <%
             HttpSession sesion = request.getSession();
-            String usr = (String) sesion.getAttribute("username");
-            Boolean sis = usr == null;
+            String user = (String) sesion.getAttribute("username");
+            Boolean sis = user == null;
             pageContext.setAttribute("sis", sis);
         %>
    
@@ -47,17 +47,12 @@
                               <li class="nav-item active"><a href="login.jsp">Login</a></li>
                                / 
                               <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                              / 
-                              <li class="nav-item active"><a href="install.jsp">Install</a></li>
+                              
                           </ul>
                         </c:if>
                         <c:if test = "${!sis}">
                           <ul class="nav navbar-nav navbar-right">
-                              <li>
-                                  <button type="button" class="btn btn-default" id="carrito" href="carrito.jsp">
-                                      Carrito de ${sessionScope.usuario}
-                                  </button>
-                              </li>
+                              <li class="nav-item active"><a href="carrito.jsp">Carrito de ${user}</a></li>
                           </ul>
                         </c:if>
                     </div>
@@ -83,14 +78,14 @@
             </div>
 
         
-            <div class="container">
+              <div class="container">
                 
                 <c:forEach var="book" items="${books.books}">
                     <section>
                         <div class="container py-3">
                           <div class="card">
                             <div class="row " style="margin: 1%">
-                              <div class="col-md-4">
+                                <div class="col-md-4">
                                   <img src="${book.img}" class="w-100">
                                 </div>
                                 <div class="col-md-8 px-3">
@@ -108,7 +103,7 @@
                                         </c:forEach>
                                     </div>
                                     <form action="book.do" method="post">
-                                        <input type="text" name="id" value="${temp.id}" hidden="">
+                                        <input type="text" name="id" value="${book.bookId}" hidden="">
                                         <button type="submit" class="btn btn-primary">Ver el libro</button>
                                     </form>
                                   </div>
@@ -127,7 +122,7 @@
                 
         
             <footer class="footer bg-light" style="bottom:0px;">
-                <center><span><strong>Creado por:</strong> Dani Diaz - Pablo Paradinas Prieto - Catalin Salvan</span></center>
+                <center><span><strong>Creado por:</strong> Dani Diaz - Pablo Paradinas Prieto - Catalin Salvan - <a href="install.jsp">DB</a></span></center>
             </footer>
    
         

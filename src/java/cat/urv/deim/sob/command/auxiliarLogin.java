@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import BookREST.entities.CustomerList;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -25,7 +26,7 @@ public class auxiliarLogin {
         Client customer= ClientBuilder.newClient();
         
         String ll=customer.target("http://localhost:8080/BookREST/rest/api/v1/customers").
-                        request().
+                        request(MediaType.APPLICATION_JSON).
                         get(String.class);
         
         CustomerList list=auxiliarLogin.stringtoXML(ll);
@@ -33,7 +34,7 @@ public class auxiliarLogin {
         return list;
     }
     
-    private static CustomerList stringtoXML(String str){
+    public static CustomerList stringtoXML(String str){
         JAXBContext jaxbcontext;
         CustomerList list=null;
         try {
@@ -44,6 +45,7 @@ public class auxiliarLogin {
         } catch (JAXBException ex) {
             Logger.getLogger(SortCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
+                
         return list;
     }
 

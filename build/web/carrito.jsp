@@ -36,23 +36,7 @@
                   <div class="navbar-header">
                     <a class="navbar-brand" href="index.jsp">Practica SOB</a>
                   </div>
-                    <form class="navbar-form" action="">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Buscar Libro" name="search">
-                          <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                              Buscar
-                            </button>
-                          </div>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <button type="button" class="btn btn-default" id="carrito" href="carrito.jsp">
-                                Carrito de ${sessionScope.usuario}
-                            </button>
-                        </li>
-                    </ul>
+                    
                 </div>
             </nav>
         </header>
@@ -74,7 +58,8 @@
         </div>
                 
         <div class="container">
-            <c:forEach var="book" items="${list.books}">
+                
+            <c:forEach var="book" items="${books.books}">
                 <section>
                     <div class="container py-3">
                       <div class="card">
@@ -82,22 +67,17 @@
                           <div class="col-md-4">
                               <img src="${book.img}" class="w-100">
                             </div>
-                            <div class="col-md-8 px-3">
+                            <div class="col-md-4 px-3">
                               <div class="card-block px-3">
                                 <h4 class="card-title">${book.title}</h4>
-                                <p class="card-text"><strong>Autores:</strong></p>
-                                <p class="card-text">${book.author}</p>
-                                <p class="card-text"><strong>Descripcion:</strong></p>
-                                <p class="card-text">${book.description}</p>
                                 <p class="card-text"><strong>Precio:</strong></p>
                                 <p class="card-text">${book.price} €</p>
-                                <div class="ec-stars-wrapper">
-                                    <c:forEach var="i" begin = "1" end = "${book.assessment}">
-                                        <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
-                                    </c:forEach>
-                                </div>
+                              </div>
+                            </div>
+                           <div class="col-md-4 px-3">
+                              <div class="card-block px-3">
                                 <form action="book.do" method="post">
-                                    <input type="text" name="id" value="${temp.id}" hidden="">
+                                    <input type="text" name="id" value="${book.bookId}" hidden="">
                                     <button type="submit" class="btn btn-primary">Ver el libro</button>
                                 </form>
                               </div>
@@ -109,6 +89,7 @@
                     </div>
                 </section>
             </c:forEach>
+
         </div>
         
         <%--<c:forEach var="temp" items="${llibres.llibres}">

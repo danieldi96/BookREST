@@ -20,14 +20,16 @@ public class BookCommand implements Command {
             throws ServletException, IOException {
 
         String id=request.getParameter("id");
+        
         Client customer= ClientBuilder.newClient();
         Response c=customer.target("http://localhost:8080/BookREST/rest/api/v1/book/"+id).
                         request().
                         get();
         Book b=c.readEntity(Book.class);
         
-        request.setAttribute("book", b);
+        System.out.println("Libro:"+ b);
         
+        request.setAttribute("book", b);
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/book.jsp").forward(request, response);
     }

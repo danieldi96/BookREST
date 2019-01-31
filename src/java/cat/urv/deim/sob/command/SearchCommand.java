@@ -25,17 +25,17 @@ public class SearchCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        String name=request.getParameter("name");
+        String name=request.getParameter("search");
         
-        Client customer= ClientBuilder.newClient();
-        String ll=customer.target("http://localhost:8080/BookREST/rest/api/v1/book?sort=price").
-                        request().
-                        get(String.class);
-        
-        BookList list=this.stringtoXML(ll);
-        
-        
+        Client customer = ClientBuilder.newClient();
+        String ll = customer.target("http://localhost:8080/BookREST/rest/api/v1/book?sort=price").
+                request().
+                get(String.class);
+
+        BookList list = this.stringtoXML(ll);
+
         BookList searched=new BookList();
+        
         searched.setBooks(list.getBooks().stream().filter(x->{
             String str=x.getTitle().toUpperCase();
             if(str.indexOf(name.toUpperCase())!=-1)
@@ -45,10 +45,10 @@ public class SearchCommand implements Command {
                 }).collect(Collectors.toList()));// 2. produce the view with the web result
         
         
-        
             request.setAttribute("books", searched);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);
+
     }
     
     private BookList stringtoXML(String str){

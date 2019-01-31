@@ -19,14 +19,13 @@ public class AddCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        Integer id = Integer.parseInt(request.getParameter("id"));
-        String img = request.getParameter("img");
+        Integer id = Integer.parseInt(request.getParameter("bookId"));
         String title = request.getParameter("title");
         String author = request.getParameter("author");
         String description = request.getParameter("description");
-        Integer price = Integer.parseInt(request.getParameter("price"));
+        Float price = Float.parseFloat(request.getParameter("price"));
         Integer assessment = Integer.parseInt(request.getParameter("assessment"));
-    
+        String img = request.getParameter("img");
 
         Book book = new Book();
         book.setBookId(id);
@@ -37,9 +36,13 @@ public class AddCommand implements Command {
         book.setAssessment(assessment);
         book.setTitle(title);
         
+        
+        System.out.println("--------->>>>> "+book.toString());
+
+
         HttpSession sesion = request.getSession();
 
-        if (sesion.getAttribute("usuario") != null) {
+        if (sesion.getAttribute("username") != null) {
             BookList books = new BookList();
             List<Book> aux=(List<Book>) sesion.getAttribute("carrito");
             

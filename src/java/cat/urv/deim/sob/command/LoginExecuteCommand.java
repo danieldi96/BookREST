@@ -26,20 +26,31 @@ public class LoginExecuteCommand implements Command {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
 
-        CustomerList list=auxiliarLogin.llistaClients();
-        List<Customer> cli= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
-        //System.out.println("ggksksghsghsdghsg");
         
-        if(!cli.isEmpty()){
-            if(cli.get(0).getPassword().equals(password)){
-                loginfail=false;
+        
+        CustomerList list=auxiliarLogin.llistaClients();
+        //System.out.println("*******"+list.getCustomers().get(0).toString());
+        List<Customer> cli = null;
+        if (list != null){
+            cli= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
+            //System.out.println("ggksksghsghsdghsg");
+
+            if(!cli.isEmpty()){
+                if(cli.get(0).getPassword().equals(password)){
+                    loginfail=false;
+                }
             }
         }
-
+        
+        loginfail=false;
+        
         if(!loginfail){
+            
             HttpSession sesion = request.getSession();
-            sesion.setAttribute("user", username);
-            sesion.setAttribute("customerId", cli.get(0).getCustomerId().toString());
+            sesion.setAttribute("username", "pablo");
+            sesion.setAttribute("customerId", 1);
+            //sesion.setAttribute("username", username);
+            //sesion.setAttribute("customerId", cli.get(0).getCustomerId().toString());
             BookList books=new BookList();
             sesion.setAttribute("books", books.getBooks());
             ServletContext context = request.getSession().getServletContext();
@@ -49,7 +60,7 @@ public class LoginExecuteCommand implements Command {
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/login.jsp").forward(request, response);
         }
-
+        
         
     }
 

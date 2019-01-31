@@ -27,7 +27,7 @@ public class BuyCommand implements Command {
         HttpSession sesion = request.getSession();
         BookList booklist = new BookList();
         booklist.setBooks((List<Book>) sesion.getAttribute("carrito"));
-        Integer id= Integer.parseInt((String) sesion.getAttribute("id"));
+        Integer id= Integer.parseInt((String) sesion.getAttribute("customerId"));
              
         booklist.getBooks().stream().map((Book) -> {
             Purchase purchase=new Purchase();

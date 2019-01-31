@@ -40,18 +40,13 @@
                     <h5 class="card-title text-center">Registrarse en la tienda</h5>
                     <form class="form-signin">
                       <div class="form-label-group">
-                        <label for="inputText">Nombre</label>
-                        <input type="text" id="inputEmail" class="form-control" name="name" placeholder="Name" required autofocus>
-                      </div>
-                      <br>
-                      <div class="form-label-group">
-                        <label for="inputUsername">Usuario</label>
-                        <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus>
+                        <label for="inputEmail">Usuario</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                       </div>
                       <br>
                       <div class="form-label-group">
                         <label for="inputPassword">Contraseña</label>
-                        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                       </div>
                       <br>
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
