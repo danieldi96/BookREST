@@ -24,38 +24,36 @@ public class LoginExecuteCommand implements Command {
         
         // 1. process the request
         String username=request.getParameter("username");
-        String password=request.getParameter("password");
-
+        String password=request.getParameter("password");       
         
-        
-        CustomerList list=auxiliarLogin.llistaClients();
-        //System.out.println("*******"+list.getCustomers().get(0).toString());
+        CustomerList list = auxiliarLogin.llistaClients();
+                        
         List<Customer> cli = null;
+        Customer selected = null;
         if (list != null){
-            cli= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
-            //System.out.println("ggksksghsghsdghsg");
-
+            cli = list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
+            
             if(!cli.isEmpty()){
-                if(cli.get(0).getPassword().equals(password)){
-                    loginfail=false;
+                for (Customer c: cli){
+                    if(c.getPassword().equals(password)){
+                        selected = c;
+                        loginfail=false;
+                    }
                 }
             }
         }
         
-        loginfail=false;
-        
         if(!loginfail){
             
             HttpSession sesion = request.getSession();
-            sesion.setAttribute("username", "pablo");
-            sesion.setAttribute("customerId", 1);
-            //sesion.setAttribute("username", username);
-            //sesion.setAttribute("customerId", cli.get(0).getCustomerId().toString());
+            sesion.setAttribute("username", username);
+            sesion.setAttribute("customerId", selected.getCustomerId().toString());
             BookList books=new BookList();
             sesion.setAttribute("books", books.getBooks());
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);
         }else{
+            //Llevar a Login?
             request.setAttribute("login", loginfail);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/login.jsp").forward(request, response);

@@ -14,7 +14,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import BookREST.entities.CustomerList;
+import com.google.gson.Gson;
 import javax.ws.rs.core.MediaType;
+
 
 /**
  *
@@ -22,33 +24,16 @@ import javax.ws.rs.core.MediaType;
  */
 public class auxiliarLogin {
     
-    public static CustomerList llistaClients(){
+    public static CustomerList llistaClients() {
         Client customer= ClientBuilder.newClient();
         
         String ll=customer.target("http://localhost:8080/BookREST/rest/api/v1/customers").
-                        request(MediaType.APPLICATION_JSON).
+                        request().
                         get(String.class);
-        
-        CustomerList list=auxiliarLogin.stringtoXML(ll);
-        
-        return list;
-    }
-    
-    public static CustomerList stringtoXML(String str){
-        JAXBContext jaxbcontext;
-        CustomerList list=null;
-        try {
-            jaxbcontext = JAXBContext.newInstance(CustomerList.class);
-            Unmarshaller jaxbunmarshaller=jaxbcontext.createUnmarshaller();
-            list=(CustomerList) jaxbunmarshaller.unmarshal(new StringReader(str));
-            
-        } catch (JAXBException ex) {
-            Logger.getLogger(SortCommand.class.getName()).log(Level.SEVERE, null, ex);
-        }
                 
+        Gson gson = new Gson();
+        CustomerList list = gson.fromJson(ll, CustomerList.class);
+
         return list;
     }
-
-   
-
 }

@@ -107,7 +107,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer> {
         List<Customer> cust = super.findAll();
         CustomerList list = new CustomerList();
         list.setCustomers(cust);
-        if ( cust != null){
+        if (cust != null){
             GenericEntity<CustomerList> ent = new GenericEntity<CustomerList>(list){};
             return Response.ok(ent).build();
         }else{

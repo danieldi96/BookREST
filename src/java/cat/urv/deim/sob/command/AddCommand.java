@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import BookREST.entities.Book;
 import BookREST.entities.BookList;
 import BookREST.entities.Purchase;
-import BookREST.entities.PurchaseList;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -25,7 +24,6 @@ public class AddCommand implements Command {
             throws ServletException, IOException {
 
         Integer book_id = Integer.parseInt(request.getParameter("bookId"));
-        //Integer user_id = Integer.parseInt(request.getParameter("userId"));
         
         Client customer= ClientBuilder.newClient();
         Response c=customer.target("http://localhost:8080/BookREST/rest/api/v1/book/"+book_id).

@@ -41,7 +41,7 @@
                     <form class="form-signin"  action="loged.do" method="post">
                       <div class="form-label-group">
                         <label for="inputUsername">Usuario</label>
-                        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Email address" required autofocus>
+                        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
                       </div>
                       <br>
                       <div class="form-label-group">

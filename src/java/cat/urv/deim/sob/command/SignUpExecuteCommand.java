@@ -20,21 +20,20 @@ public class SignUpExecuteCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
         
-        String name=request.getParameter("name");
+        String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String username=request.getParameter("user");
         
-        Customer cli=new Customer();
-        cli.setName(name);
-        cli.setPassword(password);
-        cli.setUser(username);
+        
+        Customer customer=new Customer();
+        customer.setPassword(password);
+        customer.setUser(username);
         
         CustomerList list=auxiliarLogin.llistaClients();
     
         List<Customer> custom= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
         
         if(custom.isEmpty()){
-            AuxiliarSignUp.llistaCustomers(cli);
+            AuxiliarSignUp.llistaCustomers(customer);
         
             HttpSession sesion = request.getSession();
             sesion.setAttribute("username", username);
