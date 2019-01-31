@@ -6,6 +6,8 @@
 package BookREST.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,9 +20,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import BookREST.entities.Book;
-import javax.ejb.Asynchronous;
-import javax.ws.rs.container.AsyncResponse;
-import javax.ws.rs.container.Suspended;
+import BookREST.entities.BookList;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -95,22 +96,31 @@ public class BookFacadeREST extends AbstractFacade<Book>{
     
     //crear método para obtener el response y acceder a la bd
 
-    @GET
-    @Produces(value = {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    @Asynchronous
-    public void findAll(@Suspended final AsyncResponse asyncResponse) {
-        asyncResponse.resume(doFindAll());
-    }
+    // metodo que retorna una lista ordenada por precio o valoracion
 
-    @GET
-    @Produces(value = {MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    private Response doFindAll() {
-        List<Book> listBooks = super.findAll();
-        if (listBooks.isEmpty())
-            return Response.status(Response.Status.NOT_FOUND).entity("La lista de libros está vacía.").build();
-        else{
-            GenericEntity<List<Book>> bookList = new GenericEntity<List<Book>>(listBooks){};
-            return Response.ok(bookList).build();
-        }            
+    @GET 
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response findAll( @QueryParam("sort") String criteri) {
+        List<Book> disordered = super.findAll(); 
+        List<Book> ordered = null; 
+        BookList list = new BookList(); 
+
+        switch ( criteri){
+            case "price": 
+                ordered = disordered.stream().sorted((a, b)->new Float(a.getPrice()).compareTo(b.getPrice())).collect(Collectors.toList());
+            break;
+            case "assessment":
+                ordered = disordered.stream().sorted((a, b)->new Integer(a.getAssessment()).compareTo(b.getAssessment())).collect(Collectors.toList());
+            break;
+            default:
+                return Response.status(Response.Status.NOT_FOUND).entity("Parameter not correct").build();
+        }
+        
+        list.setBooks(ordered);
+        GenericEntity<BookList> entity = new GenericEntity<BookList>(list){}; 
+        return Response.ok(entity).build(); 
+
     }
+    
+
 }

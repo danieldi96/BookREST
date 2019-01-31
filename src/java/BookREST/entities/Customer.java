@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,11 +37,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone")
     , @NamedQuery(name = "Customer.findByFax", query = "SELECT c FROM Customer c WHERE c.fax = :fax")
     , @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")
-    , @NamedQuery(name = "Customer.findByCreditLimit", query = "SELECT c FROM Customer c WHERE c.creditLimit = :creditLimit")})
-public class Customer implements Serializable {
+    , @NamedQuery(name = "Customer.findByCreditLimit", query = "SELECT c FROM Customer c WHERE c.creditLimit = :creditLimit")
+    , @NamedQuery(name = "Customer.findByUser", query = "SELECT c FROM Customer c WHERE c.user = :user")
+    , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")})
+public class Customer implements Serializable { 
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Basic(optional = false)
     @NotNull
     @Column(name = "CUSTOMER_ID")
@@ -71,8 +76,16 @@ public class Customer implements Serializable {
     @Size(max = 40)
     @Column(name = "EMAIL")
     private String email;
+    @Size(max = 40)
     @Column(name = "CREDIT_LIMIT")
     private Integer creditLimit;
+    @Size(max = 25)
+    @Column(name = "USERNAME")
+    private String user; 
+    @Size(max = 25)
+    @Column(name = "PASSWORD")
+    private String password;
+
 
     public Customer() {
     }
@@ -160,6 +173,23 @@ public class Customer implements Serializable {
     public void setCreditLimit(Integer creditLimit) {
         this.creditLimit = creditLimit;
     }
+
+    public String getUser () {
+        return user;
+    }
+
+    public void setUser (String user) {
+        this.user = user; 
+    }
+
+    public String getPassword () {
+        return password; 
+    }
+
+    public void setPassword (String password) {
+        this.password=password;
+    }
+
 
     @Override
     public int hashCode() {

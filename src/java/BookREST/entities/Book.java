@@ -39,13 +39,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     // TODO: This query could not be correct
     @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price"),
-    @NamedQuery(name = "Book.findByAssessment", query = "SELECT b FROM Book b WHERE b.assessment = :assessment")
+    @NamedQuery(name = "Book.findByAssessment", query = "SELECT b FROM Book b WHERE b.assessment = :assessment"),
+    @NamedQuery(name = "Book.findByImg", query = "SELECT b FROM Book b WHERE b.img = :img")
 })
 
 public class Book implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "BOOK_ID")
     private Integer bookId;
@@ -58,14 +59,15 @@ public class Book implements Serializable{
     @Size(max = 240)
     @Column(name = "DESCRIPTION")
     private String description;
-    @Size(max = 240)
-    @Column(name = "COVER")
-    private String coverBook;
     @Column(name = "PRICE")
     private float price;
     @Column(name = "ASSESSMENT")
     private int assessment;
+    @Size(max = 240)
+    @Column(name = "IMG")
+    private String img; 
     
+
     public Book() {
     }
     
@@ -96,15 +98,7 @@ public class Book implements Serializable{
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    public String getCoverBook() {
-        return coverBook;
-    }
-
-    public void setCoverBook(String coverBook) {
-        this.coverBook = coverBook;
-    }
-
+    
     public float getPrice() {
         return price;
     }
@@ -127,6 +121,14 @@ public class Book implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImg(){
+        return img; 
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
     
     @Override

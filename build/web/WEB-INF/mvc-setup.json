@@ -1,0 +1,48 @@
+{
+  "commands": [
+    {
+      "URI": "/init",
+      "class": "cat.urv.deim.sob.command.InitCommand" 
+    },
+    {
+      "URI": "/write",
+      "class": "cat.urv.deim.sob.command.WriteCommand" 
+    },
+    {
+      "URI": "/login",
+      "class": "cat.urv.deim.sob.command.LoginCommand" 
+    },
+    {
+      "URI": "/loged",
+      "class": "cat.urv.deim.sob.command.LoginExecuteCommand" 
+    },
+    {
+      "URI": "/search",
+      "class": "cat.urv.deim.sob.command.SearchCommand" 
+    },
+    {
+      "URI": "/sort",
+      "class": "cat.urv.deim.sob.command.SortCommand" 
+    },
+    {
+      "URI": "/book",
+      "class": "cat.urv.deim.sob.command.BookCommand" 
+    },
+    {
+      "URI": "/presignup",
+      "class": "cat.urv.deim.sob.command.SignUpCommand" 
+    },
+    {
+      "URI": "/signup",
+      "class": "cat.urv.deim.sob.command.SignUpExecuteCommand" 
+    },
+    {
+      "URI": "/add",
+      "class": "cat.urv.deim.sob.command.AddCommand" 
+    },
+    {
+      "URI": "/buy",
+      "class": "cat.urv.deim.sob.command.BuyCommand" 
+    }
+  ]
+}

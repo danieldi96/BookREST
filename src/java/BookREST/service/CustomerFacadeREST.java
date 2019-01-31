@@ -6,6 +6,7 @@
 package BookREST.service;
 
 import BookREST.entities.Customer;
+import BookREST.entities.CustomerList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,12 +14,15 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -26,7 +30,7 @@ import javax.ws.rs.core.MediaType;
  * Universitat Rovira i Virgili (URV)
  */
 @Stateless
-@Path("customer")
+@Path("customers")
 public class CustomerFacadeREST extends AbstractFacade<Customer> {
 
     @PersistenceContext(unitName = "BookRESTPU")
@@ -37,7 +41,6 @@ public class CustomerFacadeREST extends AbstractFacade<Customer> {
     }
 
     @POST
-    @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Customer entity) {
         super.create(entity);
@@ -46,35 +49,78 @@ public class CustomerFacadeREST extends AbstractFacade<Customer> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") String id, Customer entity) {
-        super.edit(entity);
+    public Response edit(@PathParam("id") String id, Customer entity, @HeaderParam("user") String user, @HeaderParam("password") String password) {
+        
+        if(super.find(id)!=null){
+            if((user.equals(super.find(id).getUser())) && (password.equals(super.find(id).getPassword()))){
+                super.edit(entity);
+                GenericEntity entity2=new GenericEntity<String>("The edit of the client was succesfully done, ID:  "+ id ){};
+                return Response.ok(entity2).build();
+            }
+            else{
+                return Response.status(Response.Status.FORBIDDEN).entity("The user or password are not correct!").build();
+             }
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).entity("The client "+id+" not exists!").build();    
+        }
+        
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) {
-        super.remove(super.find(id));
+    public Response remove(@PathParam("id") String id, @HeaderParam("user") String user, @HeaderParam("password") String password) {
+        if(super.find(id)!=null){
+            if((user.equals(super.find(id).getUser())) && (password.equals(super.find(id).getPassword()))){
+                super.remove(super.find(id));
+                GenericEntity entity2=new GenericEntity<String>("The edit of the client was succesfully done, ID:  "+ id ){};
+                return Response.ok(entity2).build();
+            }
+            else{
+                return Response.status(Response.Status.FORBIDDEN).entity("The user or password are not correct!").build();
+            }
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).entity("The client "+id+" not exists!").build();    
+        }
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Customer find(@PathParam("id") String id) {
-        return super.find(id);
+    public Response find(@PathParam("id") String id, @HeaderParam("user") String user, @HeaderParam("password") String password) {
+        if(super.find(id) != null){
+            if((user.equals(super.find(id).getUser())) && (password.equals(super.find(id).getPassword()))){
+                super.remove(super.find(id));
+                return Response.ok(super.find(id)).build();
+            }
+            else{
+                return Response.status(Response.Status.FORBIDDEN).entity("The user or password are not correct!").build();
+            }
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).entity("The client "+id+" not exists!").build();    
+        }
     }
 
     @GET
-    @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Customer> findAll() {
-        return super.findAll();
+    public Response findAllCustomers() {
+
+        List<Customer> cust = super.findAll();
+        CustomerList list = new CustomerList();
+        list.setCustomers(cust);
+        if ( cust != null){
+            GenericEntity<CustomerList> ent = new GenericEntity<CustomerList>(list){};
+            return Response.ok(ent).build();
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).entity("There are no customers").build();
+        }
+        
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Customer> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
+    public Response.ResponseBuilder findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+        return Response.ok(super.findRange(new int[]{from, to}));
     }
 
     @GET
