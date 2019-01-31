@@ -22,18 +22,20 @@ public class SignUpExecuteCommand implements Command {
         
         String name=request.getParameter("name");
         String password=request.getParameter("password");
-        String username=request.getParameter("user");
+        String username=request.getParameter("username");
         
         Customer cli=new Customer();
         cli.setName(name);
         cli.setPassword(password);
         cli.setUser(username);
         
-        CustomerList list=auxiliarLogin.llistaClients();
+        CustomerList list = auxiliarLogin.llistaClients();
     
-        List<Customer> custom= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
-        
+        List<Customer> custom = list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
+        System.out.println(custom.iterator().toString());
+                
         if(custom.isEmpty()){
+            //ESTA FUNCION??
             AuxiliarSignUp.llistaCustomers(cli);
         
             HttpSession sesion = request.getSession();

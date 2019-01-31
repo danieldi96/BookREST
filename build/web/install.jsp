@@ -41,7 +41,6 @@ private List<String> resetDatabase(boolean force) throws Exception {
                 stmt.executeUpdate("DROP TABLE " + dbname + "." + tablename);
                 messages.add("<pre> -> DROP TABLE " + dbname + "." + tablename + "<pre>");
             } catch (SQLException e) {
-                System.out.println("DONT EXIST TABLES");
                 // table didn't exist; it is the first time
             }
         }

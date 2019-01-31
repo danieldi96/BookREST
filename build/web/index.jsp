@@ -32,7 +32,7 @@
                       <div class="navbar-header">
                         <a class="navbar-brand" href="index.jsp">Practica SOB</a>
                       </div>
-                        <form class="navbar-form" action="">
+                        <form class="navbar-form" action="search.do">
                             <div class="input-group">
                               <input type="text" class="form-control" placeholder="Buscar Libro" name="search">
                               <div class="input-group-btn">
