@@ -23,6 +23,7 @@
             Boolean sis = usr == null;
             pageContext.setAttribute("sis", sis);
     %>
+    
     <body style="overflow:auto;  margin: 0; padding: 0; height: 100%; width: 100%;">
         
         <header>
@@ -40,7 +41,7 @@
                     </c:if>
                     <c:if test = "${!sis}">
                           <ul class="nav navbar-nav navbar-right">
-                              <li class="nav-item active"><a href="carrito.jsp">Carrito de ${sessionScope.usuario}</a></li>
+                              <li class="nav-item active"><a href="carrito.jsp">Carrito de ${usr}</a></li>
                           </ul>
                     </c:if>
                 </div>
@@ -78,12 +79,6 @@
             <div class="row" style=" justify-content: center;">
               <form action="add.do" method="post">
               <input type="text" name="bookId" value="${book.bookId}" hidden="">
-              <input type="text" name="title" value="${book.title}" hidden="">
-              <input type="text" name="author" value="${book.author}" hidden="">
-              <input type="text" name="description" value="${book.description}" hidden="">
-              <input type="text" name="price" value="${book.price}" hidden="">
-              <input type="text" name="assessment" value="${book.assessment}" hidden="">
-              <input type="text" name="img" value="${book.img}" hidden="">
               <c:if test = "${!sis}">
                   <button class="btn btn-primary" type="submit">Afegir al carro</button>
               </c:if> 

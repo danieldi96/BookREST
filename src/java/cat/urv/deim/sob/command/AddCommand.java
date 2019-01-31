@@ -10,6 +10,11 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import BookREST.entities.Book;
 import BookREST.entities.BookList;
+import BookREST.entities.Purchase;
+import BookREST.entities.PurchaseList;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.Response;
 
 public class AddCommand implements Command {
 
@@ -19,51 +24,41 @@ public class AddCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        Integer id = Integer.parseInt(request.getParameter("bookId"));
-        String title = request.getParameter("title");
-        String author = request.getParameter("author");
-        String description = request.getParameter("description");
-        Float price = Float.parseFloat(request.getParameter("price"));
-        Integer assessment = Integer.parseInt(request.getParameter("assessment"));
-        String img = request.getParameter("img");
-
-        Book book = new Book();
-        book.setBookId(id);
-        book.setAuthor(author);
-        book.setDescription(description);
-        book.setImg(img);
-        book.setPrice(price);
-        book.setAssessment(assessment);
-        book.setTitle(title);
+        Integer book_id = Integer.parseInt(request.getParameter("bookId"));
+        //Integer user_id = Integer.parseInt(request.getParameter("userId"));
         
-        
-        System.out.println("--------->>>>> "+book.toString());
-
+        Client customer= ClientBuilder.newClient();
+        Response c=customer.target("http://localhost:8080/BookREST/rest/api/v1/book/"+book_id).
+                        request().
+                        get();
+        Book book = c.readEntity(Book.class);
+  
 
         HttpSession sesion = request.getSession();
 
-        if (sesion.getAttribute("username") != null) {
-            BookList books = new BookList();
-            List<Book> aux=(List<Book>) sesion.getAttribute("carrito");
-            
-            if(aux==null){
-                books.setBooks(new ArrayList<>());
-                books.getBooks().add(book);
-            }else{
-                books.setBooks(aux);
-                books.getBooks().add(book);
-            }
+     
+        //PurchaseList puchase = new PurchaseList();
+        //Response p=customer.target("http://localhost:8080/BookREST/rest/api/v1/purchase/"+user_id).
+        //                request().
+        //                get();
+        //PurchaseList purchase =p.readEntity(PurchaseList.class);
+        //System.out.println("Id LIBRO CARRITO: " + book);
+        
+        BookList books = new BookList();
+        List<Book> aux=(List<Book>) sesion.getAttribute("carrito");
 
-            sesion.setAttribute("carrito", books.getBooks());
-            
-            ServletContext context = request.getSession().getServletContext();
-            context.getRequestDispatcher("/carrito.jsp").forward(request, response);   
+        if(aux==null){
+            books.setBooks(new ArrayList<>());
+            books.getBooks().add(book);
         }else{
-            request.setAttribute("book", book);
-            ServletContext context = request.getSession().getServletContext();
-            context.getRequestDispatcher("/book.jsp").forward(request, response);
+            books.setBooks(aux);
+            books.getBooks().add(book);
         }
 
-        
+        sesion.setAttribute("carrito", books.getBooks());
+
+        ServletContext context = request.getSession().getServletContext();
+        context.getRequestDispatcher("/carrito.jsp").forward(request, response);   
+                
     }
 }

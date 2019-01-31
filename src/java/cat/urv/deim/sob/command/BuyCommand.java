@@ -24,11 +24,12 @@ public class BuyCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        /* 
         HttpSession sesion = request.getSession();
         BookList booklist = new BookList();
         booklist.setBooks((List<Book>) sesion.getAttribute("carrito"));
         Integer id= Integer.parseInt((String) sesion.getAttribute("customerId"));
-             
+            
         booklist.getBooks().stream().map((Book) -> {
             Purchase purchase=new Purchase();
             //purchase.setIdComanda(Book.getPrice());
@@ -51,6 +52,7 @@ public class BuyCommand implements Command {
         sesion.setAttribute("carrito", BookList.getBooks());
         
         request.setAttribute("totalPrice", totalPrice);
+*/
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/recibo.jsp").forward(request, response);
     }

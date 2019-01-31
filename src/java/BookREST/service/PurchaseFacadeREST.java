@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 
 /**
@@ -56,11 +57,18 @@ public class PurchaseFacadeREST extends AbstractFacade<Purchase>{
         super.remove(super.find(id));
     }
 
+
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Purchase find(@PathParam("id") String id) {
-        return super.find(id);
+    public Response find(@PathParam("id") String id) {
+        if(super.find(id) != null){
+            return Response.ok(super.find(id)).build();
+        }
+        else{
+            return Response.status(Response.Status.FORBIDDEN).entity("Purchase NOT FOUND").build();
+        }
+        
     }
 
     @GET

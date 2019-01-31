@@ -38,15 +38,15 @@
                 <div class="card card-signin my-5">
                   <div class="card-body">
                     <h5 class="card-title text-center">Registrarse en la tienda</h5>
-                    <form class="form-signin">
+                    <form class="form-signin"  action="loged.do" method="post">
                       <div class="form-label-group">
-                        <label for="inputEmail">Usuario</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <label for="inputUsername">Usuario</label>
+                        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Email address" required autofocus>
                       </div>
                       <br>
                       <div class="form-label-group">
                         <label for="inputPassword">Contraseña</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
                       </div>
                       <br>
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>

@@ -27,7 +27,7 @@ public class BookCommand implements Command {
                         get();
         Book b=c.readEntity(Book.class);
         
-        System.out.println("Libro:"+ b);
+        
         
         request.setAttribute("book", b);
         ServletContext context = request.getSession().getServletContext();

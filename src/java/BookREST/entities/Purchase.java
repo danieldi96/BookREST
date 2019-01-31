@@ -27,8 +27,14 @@ public class Purchase implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Basic(optional = false)
+    @Column(name = "ID")
+    private Integer id;
     @Column(name = "PURCHASE_ID")
     private Integer purchaseId;
+    @Column(name = "CUSTOMER_ID")
+    private Integer customerId;
+    @Column(name = "BOOK_ID")
+    private Integer bookId;
 
     public Purchase(){
         
@@ -46,6 +52,30 @@ public class Purchase implements Serializable {
         this.purchaseId = purchaseId;
     }
 
+    public Integer getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(Integer purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

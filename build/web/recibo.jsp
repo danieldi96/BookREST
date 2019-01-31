@@ -31,16 +31,6 @@
                   <div class="navbar-header">
                     <a class="navbar-brand" href="index.jsp">Practica SOB</a>
                   </div>
-                    <form class="navbar-form" action="">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Buscar Libro" name="search">
-                          <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                              Buscar
-                            </button>
-                          </div>
-                        </div>
-                    </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <button type="button" class="btn btn-default" id="carrito" href="carrito.jsp">
@@ -56,7 +46,7 @@
             
             <center><h1>RECIBO</h1></center>
             
-            <p class="card-text">Import Total de la compra<br> €</p>
+            <p class="card-text">Precio Total:<br> €</p>
             
         </div>
         

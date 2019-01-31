@@ -20,13 +20,14 @@
     <body style="overflow:auto;  margin: 0; padding: 0; height: 100%; width: 100%;">
          <%
             HttpSession sesion = request.getSession();
-            BookList list = new BookList();
-            list.setBooks((List<Book>) sesion.getAttribute("carrito"));
+            BookList books = new BookList();
+            books.setBooks((List<Book>) sesion.getAttribute("carrito"));
             Boolean vacio = true;
-            if (list.getBooks()!=null) {
+            if (books.getBooks()!=null) {
                 vacio = false;
             }
-            pageContext.setAttribute("ll", list);
+            System.out.println("BOOKS: "+books.getBooks().toString());
+            pageContext.setAttribute("books", books);
             pageContext.setAttribute("vacio", vacio);
         %>
         
