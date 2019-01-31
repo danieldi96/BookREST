@@ -44,9 +44,11 @@
                         </form>
                         <c:if test = "${sis}">
                           <ul class="nav navbar-nav navbar-right">
-                              <li class="nav-item active"><a href="install.jsp">Login</a></li>
+                              <li class="nav-item active"><a href="login.jsp">Login</a></li>
                                / 
                               <li class="nav-item active"><a href="register.jsp">Register</a></li>
+                              / 
+                              <li class="nav-item active"><a href="install.jsp">Install</a></li>
                           </ul>
                         </c:if>
                         <c:if test = "${!sis}">

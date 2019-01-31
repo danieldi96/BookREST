@@ -88,9 +88,9 @@ private List<String> resetDatabase(boolean force) throws Exception {
             "INSERT INTO " + dbname + ".CUSTOMER(NAME, ADDRESSLINE1, ADDRESSLINE2, CITY, STATE, PHONE, FAX, EMAIL, CREDIT_LIMIT, USERNAME, PASSWORD) VALUES ('Dani', 'address1', 'address2', 'TGN', '1', '987654321', '987654111', 'sob@gmail.com', '1200', 'dani', '1234')",
             "INSERT INTO " + dbname + ".CUSTOMER(NAME, ADDRESSLINE1, ADDRESSLINE2, CITY, STATE, PHONE, FAX, EMAIL, CREDIT_LIMIT, USERNAME, PASSWORD) VALUES ('Catalin', 'address1', 'address2', 'TGN', '2', '987654321', '987654111', 'sob@gmail.com', '1200', 'catalin', '1234')",
 
-            "INSERT INTO " + dbname + ".BOOK(ASSESSMENT, DESCRIPTION, IMG, PRICE, TITLE, AUTHOR) VALUES (1, 'Infantil', 'img/caperucita.jpg', 11.0, 'Caperucita', 'AUTHOR1')",
+            "INSERT INTO " + dbname + ".BOOK(ASSESSMENT, DESCRIPTION, IMG, PRICE, TITLE, AUTHOR) VALUES (1, 'Infantil', 'img/caperucita.jpg', 33.0, 'Caperucita', 'AUTHOR1')",
             "INSERT INTO " + dbname + ".BOOK(ASSESSMENT, DESCRIPTION, IMG, PRICE, TITLE, AUTHOR) VALUES (2, 'Infantil', 'img/elreyleon.jpg', 22.0, 'El Rey León', 'AUTHOR2')",
-            "INSERT INTO " + dbname + ".BOOK(ASSESSMENT, DESCRIPTION, IMG, PRICE, TITLE, AUTHOR) VALUES (3, 'Mayores', 'img/50sombras.jpg', 33.0, '50 Sombras de Grey', 'AUTHOR3')",
+            "INSERT INTO " + dbname + ".BOOK(ASSESSMENT, DESCRIPTION, IMG, PRICE, TITLE, AUTHOR) VALUES (3, 'Mayores', 'img/50sombras.jpg', 11.0, '50 Sombras de Grey', 'AUTHOR3')",
                                                                                                                                  
         };
        
