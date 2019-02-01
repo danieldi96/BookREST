@@ -1,6 +1,6 @@
 # BookREST
 
-This is practice of Open Systems (SOB) subject of URV.
+This is the practice of Open Systems (SOB) subject of URV.
 It consists to create a website with a MVC pattern. To do this, there are two phases: Back-end and Front-end.
 
 ## Installation
