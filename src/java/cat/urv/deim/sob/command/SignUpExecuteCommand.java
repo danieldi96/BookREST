@@ -31,10 +31,16 @@ public class SignUpExecuteCommand implements Command {
         CustomerList list=auxiliarLogin.llistaClients();
     
         List<Customer> custom= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
+        boolean registerfail = true;
         
+       
         if(custom.isEmpty()){
-            AuxiliarSignUp.llistaCustomers(customer);
+           registerfail=false;
+        }
         
+        
+        if(!registerfail){
+            //AuxiliarSignUp.llistaCustomers(customer);
             HttpSession sesion = request.getSession();
             sesion.setAttribute("username", username);
             BookList booklist=new BookList();
@@ -43,8 +49,8 @@ public class SignUpExecuteCommand implements Command {
             context.getRequestDispatcher("/index.jsp").forward(request, response);
         }
         else{
-            Boolean existe=true;
-            request.setAttribute("existe", existe);
+            Boolean register=true;
+            request.setAttribute("login", register);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/register.jsp").forward(request, response);
         }    

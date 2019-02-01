@@ -14,7 +14,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import BookREST.entities.CustomerList;
-import com.google.gson.Gson;
 import javax.ws.rs.core.MediaType;
 
 

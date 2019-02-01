@@ -24,35 +24,24 @@ public class BuyCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        /* 
+        
         HttpSession sesion = request.getSession();
         BookList booklist = new BookList();
-        booklist.setBooks((List<Book>) sesion.getAttribute("carrito"));
-        Integer id= Integer.parseInt((String) sesion.getAttribute("customerId"));
-            
-        booklist.getBooks().stream().map((Book) -> {
-            Purchase purchase=new Purchase();
-            //purchase.setIdComanda(Book.getPrice());
-            //purchase.setIdClient(id);
-            //purchase.setIdBook(Book.getId());
-            return purchase;
-        }).forEachOrdered((comanda) -> {
-            javax.ws.rs.client.Client client = ClientBuilder.newClient();
-            
-            client.target("http://localhost:8080/BookREST/rest/api/v1/purchase")
-                    .request(MediaType.APPLICATION_JSON)
-                    .post(Entity.json(comanda), String.class);
-        });
-        float totalPrice=0;
+        List<Book> carrito=(List<Book>) sesion.getAttribute("carrito");
+        booklist.setBooks(carrito);
         
-        for(Book Book: booklist.getBooks())
-            totalPrice+=Book.getPrice();
+        float totalPrice_aux=0;
+        for(Book book: booklist.getBooks())
+        {
+            totalPrice_aux+= book.getPrice();
+        }
+        Integer totalPrice = Math.round(totalPrice_aux);
         
-        BookList BookList=new BookList();
-        sesion.setAttribute("carrito", BookList.getBooks());
+        
+        sesion.setAttribute("carrito", booklist.getBooks());
         
         request.setAttribute("totalPrice", totalPrice);
-*/
+
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/recibo.jsp").forward(request, response);
     }

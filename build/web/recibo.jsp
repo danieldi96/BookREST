@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="BookREST.entities.BookList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,9 +21,10 @@
     <body style="overflow:auto;  margin: 0; padding: 0; height: 100%; width: 100%;">
         <%
             HttpSession sesion = request.getSession();
-            BookList list = new BookList();
-            list.setBooks((List<Book>) sesion.getAttribute("carrito"));
-            pageContext.setAttribute("ll", list);
+            BookList books = new BookList();
+            books.setBooks((List<Book>) sesion.getAttribute("carrito"));
+            Integer totalPrice = (Integer) sesion.getAttribute("totalPrice");
+            pageContext.setAttribute("books", books);
         %>
         
         <header>
@@ -31,12 +33,8 @@
                   <div class="navbar-header">
                     <a class="navbar-brand" href="index.jsp">Practica SOB</a>
                   </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <button type="button" class="btn btn-default" id="carrito" href="carrito.jsp">
-                                Carrito de ${sessionScope.usuario}
-                            </button>
-                        </li>
+                   <ul class="nav navbar-nav navbar-right">
+                        <%--<li class="nav-item active"><a href="carrito.jsp">Carrito de ${user}</a></li>--%>
                     </ul>
                 </div>
             </nav>
@@ -46,7 +44,17 @@
             
             <center><h1>RECIBO</h1></center>
             
-            <p class="card-text">Precio Total:<br> €</p>
+            <div class="row" style="margin-top: 10%;">
+                <p>
+                    <c:forEach var="book" items="${books.books}">
+                       <br /><strong>${book.title}</strong> - Precio: ${book.price} €<br />
+                    </c:forEach>
+                </p> 
+            </div>
+            <hr>
+            <p class="card-text">Precio Total: <strong>${totalPrice}</strong> €</p>
+            <br>
+            <br>
             
         </div>
         

@@ -51,23 +51,9 @@
                           </ul>
                         </c:if>
                         <c:if test = "${!sis}">
-                            
-                        <%--            AÑADIDO EL NUEVO BOTON
-                        
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="nav-item active"><a href="carrito.jsp">Carrito de ${username}</a></li>
-                                </ul> 
-                        
-                        --%>
-                          
-                            <form class="navbar-form" href="carrito.jsp">
-                                <div class="input-group-btn">
-                                  <button class="btn btn-default" type="submit">
-                                    Carrito de ${username}
-                                  </button>
-                                </div>
-                            </form>
-                          
+                          <ul class="nav navbar-nav navbar-right">
+                              <li class="nav-item active"><a href="carrito.jsp">Carrito de ${username}</a></li>
+                          </ul>
                         </c:if>
                     </div>
                 </nav>

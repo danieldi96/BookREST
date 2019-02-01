@@ -16,8 +16,8 @@ public class SignUpCommand implements Command {
             throws ServletException, IOException {
 
         
-        Boolean existe=false;
-        request.setAttribute("existe", existe);
+        Boolean register=false;
+        request.setAttribute("register", register);
         
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/register.jsp").forward(request, response);

@@ -3,30 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/BookCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/InitCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/LoginExecuteCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/BookREST/service/ApplicationConfig.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/Command.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/recibo.jsp</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/login.jsp</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/BookREST/service/CustomerFacadeREST.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/register.jsp</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SignUpExecuteCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/AddCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/index.jsp</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SignUpCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/auxiliarLogin.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/BookREST/service/BookFacadeREST.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SortCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/BuyCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/AuxiliarSignUp.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/WriteCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/LoginCommand.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/ControllerServlet.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SearchCommand.java</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/LoginExecuteCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/WEB-INF/mvc-setup.json</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/login.jsp</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SignUpExecuteCommand.java</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/register.jsp</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SignUpCommand.java</file>
         </group>
     </open-files>
 </project-private>

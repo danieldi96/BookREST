@@ -24,6 +24,7 @@ public class AddCommand implements Command {
             throws ServletException, IOException {
 
         Integer book_id = Integer.parseInt(request.getParameter("bookId"));
+        //Integer user_id = Integer.parseInt(request.getParameter("userId"));
         
         Client customer= ClientBuilder.newClient();
         Response c=customer.target("http://localhost:8080/BookREST/rest/api/v1/book/"+book_id).
@@ -41,22 +42,29 @@ public class AddCommand implements Command {
         //                get();
         //PurchaseList purchase =p.readEntity(PurchaseList.class);
         //System.out.println("Id LIBRO CARRITO: " + book);
-        
-        BookList books = new BookList();
-        List<Book> aux=(List<Book>) sesion.getAttribute("carrito");
+        if (sesion.getAttribute("username") != null) {
+            BookList books = new BookList();
+            List<Book> aux=(List<Book>) sesion.getAttribute("carrito");
 
-        if(aux==null){
-            books.setBooks(new ArrayList<>());
-            books.getBooks().add(book);
+            if(aux==null){
+                books.setBooks(new ArrayList<>());
+                books.getBooks().add(book);
+            }else{
+                books.setBooks(aux);
+                books.getBooks().add(book);
+            }
+
+            sesion.setAttribute("carrito", books.getBooks());
+
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/carrito.jsp").forward(request, response);     
         }else{
-            books.setBooks(aux);
-            books.getBooks().add(book);
+            request.setAttribute("book", book);
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/login.jsp").forward(request, response);
         }
 
-        sesion.setAttribute("carrito", books.getBooks());
-
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/carrito.jsp").forward(request, response);   
+       
                 
     }
 }

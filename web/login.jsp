@@ -54,7 +54,7 @@
                         </c:if>
                       </div>
                       <br>
-                      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="login">Acceder</button>
+                      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="register">Acceder</button>
                     </form>
                   </div>
                 </div>

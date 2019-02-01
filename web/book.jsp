@@ -6,6 +6,7 @@
 <%@page import="BookREST.entities.Book"%>
 <%@page import="BookREST.entities.BookList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,8 +20,8 @@
             Book book = (Book) request.getAttribute("book");
             pageContext.setAttribute("book", book);
             HttpSession sesion = request.getSession();
-            String usr = (String) sesion.getAttribute("username");
-            Boolean sis = usr == null;
+            String user = (String) sesion.getAttribute("username");
+            Boolean sis = user == null;
             pageContext.setAttribute("sis", sis);
     %>
     
@@ -41,7 +42,7 @@
                     </c:if>
                     <c:if test = "${!sis}">
                           <ul class="nav navbar-nav navbar-right">
-                              <li class="nav-item active"><a href="carrito.jsp">Carrito de ${usr}</a></li>
+                              <li class="nav-item active"><a href="carrito.jsp">Carrito de  ${username}</a></li>
                           </ul>
                     </c:if>
                 </div>
@@ -79,9 +80,7 @@
             <div class="row" style=" justify-content: center;">
               <form action="add.do" method="post">
               <input type="text" name="bookId" value="${book.bookId}" hidden="">
-              <c:if test = "${!sis}">
-                  <button class="btn btn-primary" type="submit">Afegir al carro</button>
-              </c:if> 
+              <button class="btn btn-primary" type="submit">Afegir al carro</button>
           </form>
             </div>   
         </div>

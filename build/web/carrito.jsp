@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="BookREST.entities.BookList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,13 +23,13 @@
             HttpSession sesion = request.getSession();
             BookList books = new BookList();
             books.setBooks((List<Book>) sesion.getAttribute("carrito"));
-            Boolean vacio = true;
+            Boolean libros_disponibles = true;
             if (books.getBooks()!=null) {
-                vacio = false;
+                libros_disponibles = false;
             }
-            System.out.println("BOOKS: "+books.getBooks().toString());
+            
             pageContext.setAttribute("books", books);
-            pageContext.setAttribute("vacio", vacio);
+            pageContext.setAttribute("libros_disponibles", libros_disponibles);
         %>
         
         <header>
@@ -47,26 +48,31 @@
             
             <center><h1>CARRITO</h1></center>
             
-            <c:if test = "${!vacio}">
+            <c:if test = "${!libros_disponibles}">
+                <br>
                 <form action="buy.do" method="post">
                     <button type="submit" class="btn btn-default">Comprar</button>
                 </form>
+                <br>
             </c:if>
-            <c:if test = "${vacio}">
-                <h1 class="card-text" style="text-align: center"> NO HI HAN LLIBRES</h1>
+            <c:if test = "${libros_disponibles}">
+                <br>
+                <br>
+                <h1 class="card-text" style="color: blue; text-align: center;"> EL CARRO ESTA VACIO</h1>
             </c:if>
             
         </div>
                 
         <div class="container">
+           
                 
             <c:forEach var="book" items="${books.books}">
                 <section>
                     <div class="container py-3">
                       <div class="card">
                         <div class="row " style="margin: 1%">
-                          <div class="col-md-4">
-                              <img src="${book.img}" class="w-100">
+                          <div class="col-md-2">
+                              <img src="${book.img}" style="width: 100%; height: 100%">
                             </div>
                             <div class="col-md-4 px-3">
                               <div class="card-block px-3">
@@ -75,14 +81,15 @@
                                 <p class="card-text">${book.price} €</p>
                               </div>
                             </div>
-                           <div class="col-md-4 px-3">
-                              <div class="card-block px-3">
+                           <%--<div class="col-md-2">
+                              <div class="card-block">
+                                <br>
                                 <form action="book.do" method="post">
                                     <input type="text" name="id" value="${book.bookId}" hidden="">
                                     <button type="submit" class="btn btn-primary">Ver el libro</button>
                                 </form>
                               </div>
-                            </div>
+                            </div>--%>
 
                           </div>
                         </div>

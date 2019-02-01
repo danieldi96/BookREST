@@ -213,7 +213,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "Customer{" + "customerId=" + customerId + ", name=" + name + ", addressline1=" + addressline1 + ", addressline2=" + addressline2 + ", city=" + city + ", state=" + state + ", phone=" + phone + ", fax=" + fax + ", email=" + email + ", creditLimit=" + creditLimit + ", user=" + user + ", password=" + password + '}';
+        return "BookWebREST.Customer[ customerId=" + customerId + " ]";
     }
     
 }

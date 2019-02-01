@@ -24,7 +24,9 @@ public class LoginExecuteCommand implements Command {
         
         // 1. process the request
         String username=request.getParameter("username");
-        String password=request.getParameter("password");       
+        String password=request.getParameter("password");
+
+        
         
         CustomerList list = auxiliarLogin.llistaClients();
                         
@@ -43,6 +45,7 @@ public class LoginExecuteCommand implements Command {
             }
         }
         
+        
         if(!loginfail){
             
             HttpSession sesion = request.getSession();
@@ -53,7 +56,6 @@ public class LoginExecuteCommand implements Command {
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);
         }else{
-            //Llevar a Login?
             request.setAttribute("login", loginfail);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/login.jsp").forward(request, response);
