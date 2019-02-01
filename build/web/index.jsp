@@ -121,7 +121,7 @@
 
                 
         
-            <footer class="footer bg-light" style="bottom:0px;">
+            <footer class="footer bg-light" style="bottom:0px; position: fixed; width: 100%; text-align: center;">
                 <center><span><strong>Creado por:</strong> Dani Diaz - Pablo Paradinas Prieto - Catalin Salvan - <a href="install.jsp">DB</a></span></center>
             </footer>
    
