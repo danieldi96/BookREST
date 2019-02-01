@@ -5,16 +5,10 @@
  */
 package cat.urv.deim.sob.command;
 
-import java.io.StringReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import BookREST.entities.CustomerList;
-import javax.ws.rs.core.MediaType;
+import com.google.gson.Gson;
 
 
 /**
