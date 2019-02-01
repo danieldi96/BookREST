@@ -16,11 +16,16 @@
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SignUpExecuteCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/AddCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/index.jsp</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SignUpCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/auxiliarLogin.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/BookREST/service/BookFacadeREST.java</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SortCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/BuyCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/AuxiliarSignUp.java</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/WriteCommand.java</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/LoginCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/ControllerServlet.java</file>
+            <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/src/java/cat/urv/deim/sob/command/SearchCommand.java</file>
             <file>file:/C:/Users/danie/Documents/NetBeansProjects/BookREST/web/WEB-INF/mvc-setup.json</file>
         </group>
     </open-files>
